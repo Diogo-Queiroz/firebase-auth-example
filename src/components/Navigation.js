@@ -24,7 +24,7 @@ const NavigationNonAuth = () =>
     <li className='nav-item'><Link className='nav-link' to={routes.SIGN_IN}>Sign In</Link></li>
   </ul>
 
-const NavigationFullBar = () =>
+const NavigationFullBar = ({ authUser }) =>
   <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
     <Link className='navbar-brand' to={routes.HOME}>KART</Link>
     <button className='navbar-toggler' type='button' 
@@ -33,7 +33,7 @@ const NavigationFullBar = () =>
             aria-label='Toggle Navigation'>
       <span className='navbar-toggler-icon'></span>
     </button>
-    <Navigation />
+    <Navigation authUser={ authUser }/>
   </nav>
 
 export default NavigationFullBar

@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 
-import Navigation from './Navigation'
+import NavigationFullBar from './Navigation'
 import HomePage from './Home'
 import SignInPage from './SignIn'
 import SignUpPage from './SignUp'
@@ -37,7 +37,7 @@ class App extends Component {
           
       <Router>
         <div>
-          <Navigation authUser={this.state.authUser}/>
+          <NavigationFullBar authUser={this.state.authUser}/>
     
           <hr />
     

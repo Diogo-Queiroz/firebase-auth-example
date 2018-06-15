@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { 
+  Link,
+  withRouter
+} from 'react-router-dom'
 
 import { SignUpLink } from './SignUp'
 import { auth } from '../firebase'
@@ -84,8 +87,16 @@ class SignInForm extends Component {
   }
 }
 
+const SignInLink = () =>
+  <p>
+    Already have an account?
+    {' '}
+    <Link to={routes.SIGN_IN}>Sign In</Link>
+  </p>
+
 export default withRouter(SignInPage)
 
 export {
-  SignInForm
+  SignInForm,
+  SignInLink
 }

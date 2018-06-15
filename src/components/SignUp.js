@@ -4,6 +4,7 @@ import {
   withRouter
 } from 'react-router-dom'
 
+import { SignInLink } from './SignIn'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
 
@@ -13,6 +14,7 @@ const SignUpPage = ({ history }) =>
   <div className='container'>
     <h1>Sign Up</h1>
     <SignUpForm history={history}/>
+    <SignInLink />
   </div>
 
 const INITIAL_STATE = {
