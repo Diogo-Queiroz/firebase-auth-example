@@ -2,7 +2,11 @@
   "name": "firebase-auth",
   "version": "1.0.0",
   "description": null,
-  "keywords": ["react", "github", "firebase"],
+  "keywords": [
+    "react",
+    "github",
+    "firebase"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "bootstrap": "4.1.1",
