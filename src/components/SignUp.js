@@ -11,7 +11,7 @@ import * as routes from '../constants/routes'
 import './signupstyle.css'
 
 const SignUpPage = ({ history }) =>
-  <div className='container'>
+  <div>
     <h1>Sign Up</h1>
     <SignUpForm history={history}/>
     <SignInLink />

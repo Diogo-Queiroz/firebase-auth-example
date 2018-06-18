@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import AuthUserContext from './AuthUserContext'
 import SignOutButton from './SignOut'
 import * as routes from '../constants/routes'
 
-const Navigation = ({ authUser }) =>
-  <div className='collapse navbar-collapse' id='navbar-content'>
-    { authUser
-      ? <NavigationAuth />
-      : <NavigationNonAuth />
-    }
-  </div>
+const Navigation = () =>
+    <div className='collapse navbar-collapse' id='navbar-content'>
+        <AuthUserContext.Consumer>
+            {authUser => authUser
+                ? <NavigationAuth />
+                : <NavigationNonAuth />
+            }
+        </AuthUserContext.Consumer>
+    </div>
 const NavigationAuth = () => 
   <ul className='navbar-nav mr-auto'>
     <li className='nav-item'><Link className='nav-link' to={routes.HOME}>Home</Link></li>
@@ -24,16 +27,17 @@ const NavigationNonAuth = () =>
     <li className='nav-item'><Link className='nav-link' to={routes.SIGN_IN}>Sign In</Link></li>
   </ul>
 
-const NavigationFullBar = ({ authUser }) =>
-  <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-    <Link className='navbar-brand' to={routes.HOME}>KART</Link>
-    <button className='navbar-toggler' type='button' 
-            data-toggle='collapse' data-target='#navbar-content'
-            aria-controls='navbarContent' aria-expanded='false'
-            aria-label='Toggle Navigation'>
-      <span className='navbar-toggler-icon'></span>
-    </button>
-    <Navigation authUser={ authUser }/>
-  </nav>
+const NavigationFullBar = () =>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+        <Link className='navbar-brand' to={routes.HOME}>KART</Link>
+        <button className='navbar-toggler' type='button' 
+                data-toggle='collapse' data-target='#navbar-content'
+                aria-controls='navbarContent' aria-expanded='false'
+                aria-label='Toggle Navigation'>
+            <span className='navbar-toggler-icon'></span>
+        </button>
+            <Navigation />
+    </nav>
+
 
 export default NavigationFullBar

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -13,62 +13,22 @@ import AccountPage from './Account'
 import PasswordForgetPage from './PasswordForget'
 
 import * as routes from '../constants/routes'
-import { firebase } from '../firebase'
+import withAuthentication from './withAuthentication'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+const App = () =>  
+    <Router>
+    <div>
+        <NavigationFullBar />
     
-    this.state = {
-      authUser: null
-    }
-  }
-  
-  componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? this.setState(() => ({ authUser }))
-        : this.setState(() => ({ authUser: null }))
-    })
-  }
-  
-  render() {
-    return (
-          
-      <Router>
-        <div>
-          <NavigationFullBar authUser={this.state.authUser}/>
+        <hr />
     
-          <hr />
-    
-          <Route
-            exact path={routes.HOME}
-            component={() => <HomePage />}
-          />
-          <Route
-            exact path={routes.SIGN_IN}
-            component={() => <SignInPage />}
-          />
-          <Route
-            exact path={routes.SIGN_UP}
-            component={() => <SignUpPage />}
-          />
-          <Route
-            exact path={routes.LANDING}
-            component={() => <LandingPage />}
-          />
-          <Route
-            exact path={routes.ACCOUNT}
-            component={() => <AccountPage />}
-          />
-          <Route
-            exact path={routes.PASSWORD_FORGET}
-            component={() => <PasswordForgetPage />}
-          />
-        </div>
-      </Router>
-    )
-  }
-}
+        <Route exact path={routes.HOME} component={() => <HomePage />} />
+        <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+        <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+        <Route exact path={routes.LANDING} component={() => <LandingPage />} />
+        <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+        <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+    </div>
+    </Router>
 
-export default App
+export default withAuthentication(App)
