@@ -6,7 +6,7 @@ import SignOutButton from './SignOut'
 import * as routes from '../constants/routes'
 
 const Navigation = () =>
-    <div className='collapse navbar-collapse' id='navbar-content'>
+    <div className='navbar-nav' id='navbar-content'>
         <AuthUserContext.Consumer>
             {authUser => authUser
                 ? <NavigationAuth />
@@ -36,7 +36,7 @@ const NavigationFullBar = () =>
                 aria-label='Toggle Navigation'>
             <span className='navbar-toggler-icon'></span>
         </button>
-            <Navigation />
+        <Navigation />
     </nav>
 
 

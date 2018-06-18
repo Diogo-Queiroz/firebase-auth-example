@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 
 import { SignUpLink } from './SignUp'
+import { PasswordForgetLink } from './PasswordForget'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
 
@@ -13,6 +14,7 @@ const SignInPage = ({ history }) =>
     <h1>Sign In</h1>
     <SignInForm history={history} />
     <SignUpLink />
+    <PasswordForgetLink />
   </div>
 
 const INITIAL_STATE = {
@@ -81,7 +83,7 @@ class SignInForm extends Component {
           Sign In
         </button>
 
-        {error && <p> {error.message} </p>}
+        {error && <p className='text-danger'> {error.message} </p>}
       </form>
     )
   }
