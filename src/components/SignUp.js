@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 
 import { SignInLink } from './SignIn'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
 import * as routes from '../constants/routes'
 
 import './signupstyle.css'
@@ -49,11 +49,14 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        this.setState(() => ({ ...INITIAL_STATE }))
-        history.push(routes.HOME)
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error))
+        db.doCreateUser(authUser.user.uid, username, email)
+          .then(() => {
+            this.setState(() => ({ ...INITIAL_STATE }))
+              history.push(routes.HOME)
+            })
+            .catch(error => {
+              this.setState(byPropKey('error', error))
+          })
       })
 
     event.preventDefault()
